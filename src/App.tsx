@@ -42,7 +42,7 @@ function App() {
       if (gameState !== GameState.PLAYING) return;
       if (e.key === "Enter") {
         if (currentGuess.length < WORD_LENGTH) return;
-        else if (!words.includes(currentGuess.toUpperCase())) {
+        else if (!words.includes(currentGuess)) {
           alert("Please, insert a valid word!");
           setCurrentGuess("");
           return;
@@ -54,13 +54,13 @@ function App() {
         setGuesses(newGuesses);
         setCurrentGuess("");
 
-        if (currentGuess.toUpperCase() === solution)
+        if (currentGuess === solution)
           setGameState(GameState.WON);
         else if (guessIndex === TRIES - 1) setGameState(GameState.LOST);
       } else if (e.key == "Backspace") {
         setCurrentGuess(currentGuess.slice(0, -1));
-      } else if (e.key.match(/^[a-zA-Z]$/)) {
-        setCurrentGuess(currentGuess + e.key);
+      } else if (e.key.match(/^[a-zA-Z]$/) && currentGuess.length < WORD_LENGTH) {
+        setCurrentGuess(currentGuess + e.key.toUpperCase());
       }
     };
     window.addEventListener("keydown", handleType);
@@ -73,17 +73,17 @@ function App() {
   if (!solution) return <h1>Loading...</h1>;
 
   return (
-    <div>
+    <div className={"card"}>
       <h1>React Wordle 📖</h1>
       <h2>Take a guess!</h2>
       {guesses.map((guess, index) => {
         const guessIndex = guesses.findIndex((val) => val == null);
         const value =
           guessIndex === index
-            ? currentGuess.toUpperCase()
+            ? currentGuess
             : guess == null
               ? guess
-              : guess.toUpperCase();
+              : guess;
         const finalized = gameState !== GameState.PLAYING || guessIndex > index;
         return (
           <Line

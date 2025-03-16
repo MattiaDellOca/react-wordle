@@ -4,3 +4,56 @@
     padding: 2rem;
     text-align: center;
 }
+
+.card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 400px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.card h1, .card h2, .card p {
+    margin: 0 0 10px;
+}
+
+.card h1 {
+    font-size: 24px;
+    color: #333333;
+}
+
+.card h2 {
+    font-size: 20px;
+    color: #666666;
+}
+
+.card p {
+    font-size: 16px;
+    color: #999999;
+}
+
+@media (prefers-color-scheme: light) {
+    body {
+        background-color: #f0f0f0;
+        color: #000000;
+    }
+
+    .card {
+        background-color: #ffffff;
+        color: #000000;
+    }
+
+    .card h1 {
+        color: #333333;
+    }
+
+    .card h2 {
+        color: #666666;
+    }
+
+    .card p {
+        color: #999999;
+    }
+}
